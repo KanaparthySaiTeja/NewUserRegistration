@@ -8,19 +8,19 @@ public class UserRegistration {
     static Scanner sc=new Scanner(System.in);
 
 
-    public static void mobileNumber(String number) {
-        String regex = "^[0-9]{2}\\s[0-9]{10}$";
-        if (number.matches(regex))
-            System.out.println("Mobile Number is Valid");
+    public static void setPassword(String password) {
+        String regex = "^(?=^.).{8,}$";
+        if (password.matches(regex))
+            System.out.println("Password is Valid");
         else
-            System.out.println("Mobile Number is Invalid");
+            System.out.println("Password is Invalid");
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the mobile number");
-        String number = sc.nextLine();
-        mobileNumber(number);
+        System.out.println("Enter the password");
+        String password = sc.nextLine();
+        setPassword(password);
         sc.close();
     }
 
