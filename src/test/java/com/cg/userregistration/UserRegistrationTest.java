@@ -4,33 +4,55 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class UserRegistrationTest {
-    UserRegistration ur=new UserRegistration();
 
     @Test
-    public void firstNameValidation(){
-        Assert.assertTrue(ur.names("Sai"));
+    public void firstNameVaidation() throws HandleException {
+        try {
+            UserRegistration ur = new UserRegistration();
+            Assert.assertTrue( ur.name( "Sai" ) );
+        } catch (Exception e) {
+            throw new HandleException( "Enter the valid first name" );
+        }
     }
     @Test
-    public void lastNameValidation(){
-        Assert.assertTrue(ur.names("Teja"));
+    public void lastNameVaidation() throws HandleException {
+        try {
+            UserRegistration ur = new UserRegistration();
+            Assert.assertTrue( ur.name( "Teja" ) );
+        } catch (Exception e) {
+            throw new HandleException( "Enter the valid last name" );
+        }
+    }
+    @Test
+    public void mobileVaidation() throws HandleException {
+        try {
+            UserRegistration ur = new UserRegistration();
+            Assert.assertTrue( ur.phNo( "91 2954624587" ) );
+        } catch (Exception e) {
+            throw new HandleException( "Enter the valid mobile number" );
+        }
+    }
+    @Test
+    public void passwordVaidation() throws HandleException {
+        try {
+            UserRegistration ur = new UserRegistration();
+            Assert.assertTrue( ur.password( "Saiiteja@345" ) );
+        } catch (Exception e) {
+            throw new HandleException( "Enter the valid password" );
+        }
     }
 
-    @Test
-    public void emailValidation(){
-        Assert.assertTrue(ur.email("Sai.Teja@nitt.edu"));
-    }
-    @Test
-    public void mobileValidation(){
-        Assert.assertTrue(ur.mobile("91 9494993238"));
-    }
-    @Test
-    public void passwordValidation(){
-        Assert.assertTrue(ur.password("Saitej@4528"));
-    }
 
     @Test
-    public void should_returnSad(){
-        Assert.assertEquals("Sad",ur.checkMood("Sad"));
+    public void emailVaidation() throws HandleException {
+        try {
+            UserRegistration ur = new UserRegistration();
+            Assert.assertEquals( true, ur.emailId( "saiteja@gmail.com" ) );
+        } catch (Exception e) {
+            throw new HandleException( "Enter valid email" );
+        }
     }
-
 }
+
+
+

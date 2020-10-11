@@ -1,62 +1,60 @@
 package com.cg.userregistration;
 
-import java.util.Scanner;
+
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
 
+    public static boolean name(String name) throws HandleException {
+        try {
+            String regex = "^[A-Z][a-zA-Z]{2,}$";
+            Pattern p = Pattern.compile( regex );
+            Matcher m = p.matcher( name );
+            return m.matches();
+        }catch (Exception e){
+            throw new HandleException( "Enter valid name" );
 
+        }
+    }
 
+    public static boolean phNo(String num) throws HandleException {
+        try {
+            String regex = "^[0-9]{2}\\s[0-9]{10}$";
+            Pattern p = Pattern.compile( regex );
+            Matcher m = p.matcher( num );
+            return m.matches();
+        }catch (Exception e){
+            throw new HandleException( "Enter valid number" );
 
-    // UC1 and UC2 - First name starts with Cap and has minimum 3 characters
-    public  boolean names(String name) {
-        return (Pattern.matches("^[A-Z]{1}[a-z]{2,}$", name) == true);
+        }
+    }
+
+    public static boolean emailId(String email) throws HandleException {
+        try {
+            String regex = "^[A-Za-z0-9]{1}[A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9]+(\\.[A-Za-z0-9]+){0,1}(\\.[A-Za-z]{2,})$";
+            Pattern p = Pattern.compile( regex );
+            Matcher m = p.matcher( email );
+            return m.matches();
+        }catch (Exception e){
+            throw new HandleException( "Enter valid email" );
+        }
+    }
+
+    public static boolean password(String pass) throws HandleException {
+        try {
+            String regex = "^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?!.*[<>`])" + "(?=[^@#$%^&+=]*[@#$%^&+=][^@#$%^&+=]*$)" + ".{8,}$";
+            Pattern p = Pattern.compile( regex );
+            Matcher m = p.matcher( pass );
+            return m.matches();
+        } catch (Exception e) {
+            throw new HandleException( "Enter valid password" );
+        }
     }
 
 
-
-    /*
-     * UC 3 - enter a valid email UC 9 - Cleared All Sample Provided
-     */
-    public boolean email(String emailId) {
-        return (Pattern.matches("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9]+(?:\\.[a-zA-Z0-9]+)*$", emailId) == true);
-    }
-
-    // UC4 - Mobile Format
-    public boolean mobile(String mobileNum) {
-        return(Pattern.matches("^[1-9]{2}\\s{1}[1-9]{1}[0-9]{9}$", mobileNum) == true);
-    }
-
-    // UC 5 to 8 - Password
-    public boolean password(String pass) {
-        return (Pattern.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s)[a-zA-Z0-9]*[^a-zA-Z0-9\\s]{1}[a-zA-Z0-9]*$",
-                pass) == true);
-    }
-
-    public String checkMood(String word) {
-        if (word.contains("Sad"))
-            return "Sad";
-        else
-            return "Happy";
-    }
     public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    UserRegistration ur = new UserRegistration();
-        System.out.println("Welcome to User Registration Program");
-            System.out.println("Enter First name");
-            System.out.println("First Name: "+ ur.names(scanner.nextLine()));
-            System.out.println("Enter Last name");
-            System.out.println("Last Name: "+ ur.names(scanner.nextLine()));
-            System.out.println("Enter EmailId");
-            System.out.println("EmailId: "+ ur.email(scanner.nextLine()));
-            System.out.println("Enter Mobile Number");
-            System.out.println("Mobile Number: "+ ur.mobile(scanner.nextLine()));
-            System.out.println("Enter Password");
-            System.out.println("Password: "+ ur.password(scanner.nextLine()));
-            System.out.println("How is your Mood today");
-            System.out.println(ur.checkMood(scanner.nextLine()));
-
-
+        System.out.println("Welcome to User Registration");
     }
 
 }
