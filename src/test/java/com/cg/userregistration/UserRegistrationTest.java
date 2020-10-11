@@ -9,7 +9,7 @@ public class UserRegistrationTest {
     public void firstNameVaidation() throws HandleException {
         try {
             UserRegistration ur = new UserRegistration();
-            Assert.assertTrue( ur.name( "Sai" ) );
+            Assert.assertTrue( ur.name( "sai" ) );
         } catch (Exception e) {
             throw new HandleException( "Enter the valid first name" );
         }
